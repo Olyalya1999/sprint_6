@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "C255641C-F345-4619-B44C-A881E242D339"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6198FA81-755A-46F4-A3CA-5513AD351E5E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MovieQuiz/Presentation/MovieQuizViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "4"
+            endingLineNumber = "4"
+            landmarkName = "MovieQuizViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6198FA81-755A-46F4-A3CA-5513AD351E5E - a5af9f4377c56e3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MovieQuiz.MovieQuizViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; MovieQuiz.MovieQuizViewController"
+                  moduleName = "MovieQuiz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olya/Desktop/sprint_4/MovieQuiz/Presentation/MovieQuizViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "5"
+                  endingLineNumber = "5"
+                  offsetFromSymbolStart = "252">
+               </Location>
+               <Location
+                  uuid = "6198FA81-755A-46F4-A3CA-5513AD351E5E - 349d7688a370c92b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "MovieQuiz.MovieQuizViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;MovieQuiz.MovieQuizViewController&gt;"
+                  moduleName = "MovieQuiz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/olya/Desktop/sprint_4/MovieQuiz/Presentation/MovieQuizViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "5"
+                  endingLineNumber = "5"
+                  offsetFromSymbolStart = "191">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
