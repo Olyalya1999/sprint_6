@@ -1,11 +1,10 @@
 import UIKit
 
-final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, AlertPresenterDelegate, s {
+final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, AlertPresenterDelegate {
     
     private var currentQuestionIndex: Int = 0
     private var correctAnswers: Int = 0
     private let questionsAmount:Int = 10
-    
     private var questionFactory:QuestionFactoryProtocol?
     private var currentQuestion:QuizQuestion?
     private var alertPresenter:AlertPresenterProtocol?
@@ -28,6 +27,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         let givenAnswer = false
         
         showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+        
+
     }
     
     
@@ -45,29 +46,40 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var imageView: UIImageView!
-    
     @IBOutlet private var counterLabel: UILabel!
+    @IBOutlet private var noButton: UIButton!
+    @IBOutlet private var yesButton: UIButton!
     
+    private func convert(model: QuizQuestion) -> QuizStepViewModel {
+        return QuizStepViewModel(
+            image: UIImage(data:model.image) ?? UIImage(),
+            question: model.text,
+            questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
+    }
     
     private func showLoadingIndicator(){
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
     }
     
+    private func hideLoadingIndicator() {
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
     private func showNetworkError(message: String) {
-        
         hideLoadingIndicator()
         
-        let model = AlertModel (title:"Ошибка",
-                                message = message,
-                                bottonText = " Попробовать еще раз") {[weak self] in
-            guard let self = self else { return }
-            self.currentQuestionIndex = 0
-            self.correctAnswers = 0
-            self.questionFactory?.requestNextQuestion()
+        let alertModel = AlertModel (title:"Ошибка",
+                                     message : "Не удалось загрузить данные",
+                                     buttonText: " Попробовать еще раз") {[weak self] in
+        
+            self?.currentQuestionIndex = 0
+            self?.correctAnswers = 0
+            self?.questionFactory?.requestNextQuestion()
         }
         
-        alertPresenter.show(in:self, model:model)
+        self.alertPresenter?.showAlert(model:alertModel)
     }
         
         func didLoadDataFromServer() {
@@ -79,15 +91,6 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
             showNetworkError(message: error.localizedDescription)
         }
         
-        
-        
-        
-        private func convert(model: QuizQuestion) -> QuizStepViewModel {
-            return QuizStepViewModel(
-                image: UIImage(data:model.image) ?? UIImage(),
-                question: model.text,
-                questionNumber: "\(currentQuestionIndex + 1)/\(questionsAmount)")
-        }
         
         private func show(quiz step: QuizStepViewModel) {
             imageView.image = step.image
@@ -126,16 +129,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
         private func showNextQuestionOrResults() {
             
             imageView.layer.borderWidth = 0
+          
             
             if currentQuestionIndex == questionsAmount - 1 {
                 showFinalResults()
             } else {
                 currentQuestionIndex += 1
                 questionFactory?.requestNextQuestion()
+                
             }
         }
-        
-        
         
         
         private func showAnswerResult(isCorrect: Bool) {
@@ -177,6 +180,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
             
             showLoadingIndicator()
             questionFactory?.loadData()
+            alertPresenter = AlertPresenter(delegate: self)
             
         }
         
